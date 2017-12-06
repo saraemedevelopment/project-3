@@ -17,12 +17,11 @@ mongoose.connect('mongodb://localhost/safe-places');
 
 var index = require('./routes/index');
 
+var cors = require('cors');
 
 var app = express();
 
-// var cors = require('cors');
-//
-// app.use(cors());
+app.use(cors());
 
 app.use(session({
   secret: "forum-app",
@@ -56,7 +55,6 @@ app.use('/api/review', apiFor(require('./models/Review')));
 app.use('/api/user', apiFor(require('./models/User')));
 app.use('/api/favourite', apiFor(require('./models/Favourite')));
 // app.use('/users', users);
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

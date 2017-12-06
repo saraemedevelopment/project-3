@@ -5,7 +5,7 @@ const User = require('../models/User');
 const authRoutes = express.Router();
 
 authRoutes.post('/signup', (req, res, next) => {
-  const {username, password} = req.body;
+  const {username, password, email} = req.body;
 
   if (!username || !password){
     res.status(400).json({ message: 'Provide username and password' });
@@ -15,8 +15,7 @@ authRoutes.post('/signup', (req, res, next) => {
   User.findOne({ username }, '_id')
   .then(user => {
     if (user) {
-      res.status(400).json({ message: 'The username already exists' });
-      return;
+      return res.status(400).json({ message: 'The username already exists' });
     }
 
     const salt     = bcrypt.genSaltSync(10);
@@ -24,31 +23,33 @@ authRoutes.post('/signup', (req, res, next) => {
 
     const theUser = new User({
       username,
-      password: hashPass
-    });
-    return theUser.save();
-  })
-  .then(newUser => {
-    console.log(newUser);
-    req.login(newUser, (err) => {
-      if (err) {
-        console.log(err);
+      password: hashPass,
+      email
+    })
+    .save()
+    .then(newUser => {
+      console.log(newUser);
+      req.login(newUser, (err) => {
+        if (err) {
+          console.log(err);
+          res.status(500).json({ message: 'Something went wrong' });
+          return;
+        }
+        res.status(200).json(req.user);
+      });
+    })
+    .catch(e => {
+        console.log(e);
         res.status(500).json({ message: 'Something went wrong' });
-        return;
-      }
-      res.status(200).json(req.user);
     });
-  })
-  .catch(e => {
-      console.log(e);
-      res.status(500).json({ message: 'Something went wrong' });
-  });
+});
 });
 
 
 authRoutes.post('/login', (req, res, next) => {
+
   passport.authenticate('local', (err, theUser, failureDetails) => {
-    if (err) {
+      if (err) {
       res.status(500).json({ message: 'Something went wrong' });
       return;
     }
@@ -80,6 +81,7 @@ authRoutes.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
     return;
+
   }
   res.status(403).json({ message: 'Unauthorized' });
 });

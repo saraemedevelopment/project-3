@@ -6,7 +6,9 @@ import { Observable } from 'rxjs/Rx';
 
 
 const BASE_DOMAIN = 'http://localhost:3000';
-const BASE_URL = `${BASE_DOMAIN}/api/auth`;
+
+// MIS RUTAS DEL BACK???---------------------------------------
+const BASE_URL = `${BASE_DOMAIN}/auth`;
 
 @Injectable()
 export class AuthService {
@@ -34,7 +36,9 @@ export class AuthService {
   }
 
   signup(username:string, password:string) {
-    return this.http.post(`${BASE_URL}/signup`, {username, password}, this.options)
+    // MIS RUTAS DEL BACK???---------------------------------------
+
+    return this.http.post(`${BASE_URL}/auth/signup`, {username, password}, this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))
       .catch(this.handleError);
@@ -42,21 +46,21 @@ export class AuthService {
 
   login(username:string, password:string) {
     console.log(`Login with user:${username} and password ${password}`);
-    return this.http.post(`${BASE_URL}/login`, {username, password}, this.options)
+    return this.http.post(`${BASE_URL}/auth/login`, {username, password}, this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))
       .catch(this.handleError);
   }
 
   logout() {
-    return this.http.get(`${BASE_URL}/logout`,this.options)
+    return this.http.get(`${BASE_URL}/auth/logout`,this.options)
       .map(res => res.json())
       .map(user => this.handleUser(null))
       .catch(this.handleError);
   }
 
   isLoggedIn() {
-    return this.http.get(`${BASE_URL}/loggedin`,this.options)
+    return this.http.get(`${BASE_URL}/auth/loggedin`,this.options)
       .map(res => res.json())
       .map(user => this.handleUser(user))
       .catch(this.handleError);
