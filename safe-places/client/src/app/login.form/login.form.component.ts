@@ -1,18 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../services/auth.service';
+import { AuthService } from '../../services/auth.service';
+
+
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login.form.component.html',
   styleUrls: ['./login.form.component.css']
 })
-export class LoginFormComponent{
+export class LoginFormComponent {
 
 
-  constructor(private auth:AuthService) { }
+  constructor(private auth: AuthService) { }
 
-  login(username, password){
-    this.auth.login(username,password).subscribe();
+  submitForm(myForm) {
+    console.log(myForm);
+  }
+
+  login(username, password) {
+    this.auth.login(username, password).subscribe();
   }
 
   logout() {
