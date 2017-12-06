@@ -1,17 +1,12 @@
 <h1> Authentication Front </h1>
-
-
-<!--PETA EL FORMULARIO- -->
-
-
-<!-- <div *ngIf="!auth.user">
-  <form (ngSubmit)="addAccessItem(myForm)" #myForm="ngForm" novalidate>
+<div *ngIf="!auth.user">
+  <form>
     <h2> Login or Signup </h2>
     <label> Username </label>
     <input type="text" [(ngModel)]="username" name="username"/>
     <br>
     <label> Password </label>
-    <input type="password" [(ngModel)]="password" name="password" #myUsername="ngModel" minlength="3"/>
+    <input type="password" [(ngModel)]="password" name="password"/>
 
     <button (click)="login(username,password)"> login </button>
     <button (click)="signup()"> signup </button>
@@ -22,4 +17,4 @@
 <div *ngIf="auth.user">
   <h2>Welcome {{auth.user.username}}</h2>
   <a href="#" (click)="logout()">Logout {{auth.user.username}}</a>
-</div> -->
+</div>
