@@ -36,6 +36,7 @@ authRoutes.post('/signup', (req, res, next) => {
           return;
         }
         res.status(200).json(req.user);
+        console.log(theUser);
       });
     })
     .catch(e => {

@@ -48,9 +48,7 @@ const simpleCRUD = (Model) => {
   /* EDIT a Model. */
   router.put('/:id', checkIDParam, (req, res) => {
     const updates = _.pick(req.body, model_properties);
-    Model.findByIdAndUpdate(req.params.id, {
-        new: true
-      })
+    Model.findByIdAndUpdate(req.params.id, updates, {new: true})
       .then(o => res.json(o))
       .catch(e => res.json(e));
   });

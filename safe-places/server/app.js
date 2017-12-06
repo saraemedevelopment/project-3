@@ -1,35 +1,57 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+require('dotenv').config();
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-const mongoose     = require('mongoose');
-var auth = require('./routes/auth');
+const mongoose = require('mongoose');
+const auth = require('./routes/auth');
 
 const apiFor = require('./routes/api');
-const session      = require('express-session');
-const MongoStore   = require('connect-mongo')(session);
-const passport     = require('passport');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+const cors = require('cors');
+var app = express();
+const passport = require('passport');
 
-mongoose.connect('mongodb://localhost/safe-places');
+mongoose.connect(process.env.DBURL).then(() => {
+  console.log(`Connected to DB: ${process.env.DBURL}`);
+}).catch(err => console.log(err));
+
+var whitelist = [
+  'http://localhost:4200',
+];
+
+
+
+var corsOptions = {
+  origin: function(origin, callback) {
+    var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    callback(null, originIsWhitelisted);
+  },
+  credentials: true
+};
+app.use(cors());
+app.use(cors(corsOptions));
 
 var index = require('./routes/index');
 
-var cors = require('cors');
 
-var app = express();
 
-app.use(cors());
 
+// --------------------------ESTO NO DEBERIA ESTAR AQUI-----------------------
 app.use(session({
-  secret: "forum-app",
+  secret: "killhomophobia",
   resave: true,
   saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection: mongoose.connection })
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection
+  })
 }));
-require('./passport/index');
+
+require('./passport')(app);
 
 // configure(passport);
 
@@ -44,7 +66,9 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

@@ -16,6 +16,9 @@ const placeSchema = new Schema({
     required: false,
   },
 
+  latitude: Number,
+  longitude: Number,
+
   address: {
     type: String,
     required: false
@@ -26,7 +29,7 @@ const placeSchema = new Schema({
     required: false
   },
 
-  city:{
+  city: {
     type: String,
     required: false
   },
@@ -39,5 +42,9 @@ const placeSchema = new Schema({
     updatedAt: 'updated_at'
   }
 });
+
+// userSchema.index({
+//   location: '2dsphere'
+// });
 
 module.exports = mongoose.model('Place', placeSchema);
