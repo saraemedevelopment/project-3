@@ -7,14 +7,17 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
+
 const auth = require('./routes/auth');
+const session = require('express-session');
+const passport = require('passport');
 
 const apiFor = require('./routes/api');
-const session = require('express-session');
+
 const MongoStore = require('connect-mongo')(session);
 const cors = require('cors');
 var app = express();
-const passport = require('passport');
+
 
 mongoose.connect(process.env.DBURL).then(() => {
   console.log(`Connected to DB: ${process.env.DBURL}`);
@@ -33,7 +36,6 @@ var corsOptions = {
   },
   credentials: true
 };
-app.use(cors());
 app.use(cors(corsOptions));
 
 var index = require('./routes/index');
@@ -41,11 +43,13 @@ var index = require('./routes/index');
 
 
 
-// --------------------------ESTO NO DEBERIA ESTAR AQUI-----------------------
+// --------------------------ESTO NO DEBERIA ESTAR AQUI----------------------
+// ----------MONGOSTORE O COOKIE O LOS DOS????------------------------
 app.use(session({
   secret: "killhomophobia",
   resave: true,
   saveUninitialized: true,
+  cookie : { httpOnly: true, maxAge: 2419200000 },
   store: new MongoStore({
     mongooseConnection: mongoose.connection
   })

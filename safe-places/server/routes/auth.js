@@ -5,6 +5,7 @@ const User = require('../models/User');
 const authRoutes = express.Router();
 
 authRoutes.post('/signup', (req, res, next) => {
+  console.log('Entra al signup');
   const {username, password, email} = req.body;
 
   if (!username || !password){
@@ -78,14 +79,14 @@ authRoutes.get('/logout', (req, res, next) => {
 });
 
 
-authRoutes.get('/loggedin', (req, res, next) => {
-  if (req.isAuthenticated()) {
-    res.status(200).json(req.user);
-    return;
-
-  }
-  res.status(403).json({ message: 'Unauthorized' });
-});
+// authRoutes.get('/loggedin', (req, res, next) => {
+//   if (req.isAuthenticated()) {
+//     res.status(200).json(req.user);
+//     return;
+//
+//   }
+//   res.status(403).json({ message: 'Unauthorized' });
+// });
 
 
 module.exports = authRoutes;

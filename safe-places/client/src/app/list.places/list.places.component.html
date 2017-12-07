@@ -1,0 +1,49 @@
+<p>
+  list.places works!
+</p>
+
+  <button (click)="getList()">All</button>
+
+<div class="container">
+
+<div class="left">
+
+<div class="" *ngIf="edited">
+  <div>
+    <label for="place-name">Nombre:</label><br>
+    <input type="text" [(ngModel)]="newPlace.name">
+  </div>
+  <div>
+    <label for="place-image">Foto:</label><br>
+    <input type="text" [(ngModel)]="newPlace.image">
+  </div>
+  <div>
+    <label for="place-category">Categoría:</label><br>
+    <input type="number" [(ngModel)]="newPlace.calories">
+  </div>
+  <br>
+  <button (click)="addplace();show()">Enviar</button>
+</div>
+
+  <button (click)="show()">Nuevo</button>
+<br>
+<br>
+  <div>
+    <label for="places_name"> Buscar: </label>
+    <input id="places_name" placeholder="place name"
+            type="text" [(ngModel)]="pattern">
+  </div>
+
+</div>
+
+<!-- <div class="right">
+  <div class="place" *ngFor = "let place of places | filter:'name':pattern; let i = index">
+  <h2>{{place.name}}</h2>
+  <p>Categoría: {{place.category}}</p>
+  <img src="{{place.image}}" alt="">
+  <button  (click)="shopping(place)"type="button">Añadir</button>
+</div>
+</div> -->
+
+
+</div>

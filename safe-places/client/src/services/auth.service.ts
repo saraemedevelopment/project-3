@@ -1,68 +1,73 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import { Observable } from 'rxjs/Rx';
 
+import { Injectable, EventEmitter } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Http} from '@angular/http';
+import 'rxjs/Rx';
 
 const BASE_DOMAIN = 'http://localhost:3000';
+// import {environment} from '../../environments/environment';
 
-// MIS RUTAS DEL BACK???---------------------------------------
-const BASE_URL = `${BASE_DOMAIN}/auth`;
+// const BASEURL = environment.BASEURL + "/auth";
+const BASEURL = `${BASE_DOMAIN}/auth`;
 
 @Injectable()
 export class AuthService {
-  options:object = {
-    withCredentials:true
-  }
 
-  user:object;
-  loginEvent:EventEmitter<object> = new EventEmitter();
+  private user:object;
+  private userLoginEvent:EventEmitter<any> = new EventEmitter<any>();
+  private options = {withCredentials:true};
 
   constructor(private http: Http) {
-    this.isLoggedIn().subscribe();
+    // this.isLoggedIn().subscribe();
   }
 
-  handleError(e) {
-    const error_message = e.json().message;
-    console.error(error_message);
-    return Observable.throw(e.json().message);
-  }
+    public getLoginEventEmitter():EventEmitter<any>{
+      return this.userLoginEvent;
+    }
 
-  handleUser(obj) {
-    this.user = obj;
-    this.loginEvent.emit(this.user);
-    return this.user;
-  }
+    public getUser(){
+      return this.user;
+    }
 
-  signup(username:string, password:string) {
-    // MIS RUTAS DEL BACK???---------------------------------------
+    private emitUserLoginEvent(user){
+      this.user = user;
+      this.userLoginEvent.emit(user);
+      return user;
+    }
 
-    return this.http.post(`${BASE_URL}/auth/signup`, {username, password}, this.options)
-      .map(res => res.json())
-      .map(user => this.handleUser(user))
-      .catch(this.handleError);
-  }
+    private handleError(e) {
+      console.log("AUTH ERROR");
+      return Observable.throw(e.json().message);
+    }
 
-  login(username:string, password:string) {
-    console.log(`Login with user:${username} and password ${password}`);
-    return this.http.post(`${BASE_URL}/auth/login`, {username, password}, this.options)
-      .map(res => res.json())
-      .map(user => this.handleUser(user))
-      .catch(this.handleError);
-  }
+    signup(username,password) {
+      console.log("entro la funcion");
+      return this.http.post(`${BASEURL}/signup`, {username,password}, this.options)
+        .map(res => res.json())
+        .map(user => this.emitUserLoginEvent(user))
+        .catch(this.handleError);
+    }
 
-  logout() {
-    return this.http.get(`${BASE_URL}/auth/logout`,this.options)
-      .map(res => res.json())
-      .map(user => this.handleUser(null))
-      .catch(this.handleError);
-  }
+    login(username,password) {
+      return this.http.post(`${BASEURL}/login`, {username,password}, this.options)
+        .map(res => res.json())
+        .map(user => this.emitUserLoginEvent(user))
+        .catch(this.handleError);
+    }
 
-  isLoggedIn() {
-    return this.http.get(`${BASE_URL}/auth/loggedin`,this.options)
-      .map(res => res.json())
-      .map(user => this.handleUser(user))
-      .catch(this.handleError);
-  }
+    logout() {
+      console.log("logout llamada")
+      return this.http.get(`${BASEURL}/logout`, this.options)
+        .map(res => res.json())
+        .map(user => this.emitUserLoginEvent(null))
+        .catch(this.handleError);
+
+    }
+
+    // isLoggedIn() {
+    //   return this.http.get(`${BASEURL}/loggedin`, this.options)
+    //     .map(res => res.json())
+    //     .map(user => this.emitUserLoginEvent(user))
+    //     .catch(this.handleError);
+    // }
 }
