@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');
 
 const places = require('./routes/places');
 const placeController = require('./controllers/placeController');
+const review = require('./routes/review');
+const reviewController = require('./controllers/reviewController');
 
 
 const mongoose = require('mongoose');
@@ -27,11 +29,10 @@ mongoose.connect(process.env.DBURL).then(() => {
   console.log(`Connected to DB: ${process.env.DBURL}`);
 }).catch(err => console.log(err));
 
+// ---------------------CORS---------------------
 var whitelist = [
   'http://localhost:4200',
 ];
-
-
 
 var corsOptions = {
   origin: function(origin, callback) {
@@ -42,10 +43,8 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
+
 var index = require('./routes/index');
-
-
-
 
 // --------------------------ESTO NO DEBERIA ESTAR AQUI----------------------
 // ----------MONGOSTORE O COOKIE O LOS DOS????------------------------
@@ -59,10 +58,8 @@ app.use(session({
   })
 }));
 
-require('./passport')(app);
-
 // configure(passport);
-
+require('./passport')(app);
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -81,13 +78,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-
+// ------------------ROUTES-------------------
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/api/places', places);
+app.use('/api/review', review);
 // app.use('/api/places', apiFor(require('./models/Place')));
-app.use('/api/review', apiFor(require('./models/Review')));
+// app.use('/api/review', apiFor(require('./models/Review')));
 app.use('/api/user', apiFor(require('./models/User')));
 app.use('/api/favourite', apiFor(require('./models/Favourite')));
 
