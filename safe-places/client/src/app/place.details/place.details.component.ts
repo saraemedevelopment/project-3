@@ -9,7 +9,8 @@ import { PlacesService } from '../../services/places.service';
   styleUrls: ['./place.details.component.css']
 })
 export class PlaceDetailsComponent implements OnInit {
-  place:any;
+place:any;
+review:any;
  placeId: number;
  optionalParameter: string;
 
@@ -22,6 +23,8 @@ export class PlaceDetailsComponent implements OnInit {
 
   getPlaceDetails(id, param) {
     this.router.navigate(['place', id], { queryParams: { foo: param }});
+    let contador = 0;
+    let sumrating = 0;
 
      };
 

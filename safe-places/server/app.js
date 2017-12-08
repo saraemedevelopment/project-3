@@ -6,6 +6,10 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+const places = require('./routes/places');
+const placeController = require('./controllers/placeController');
+
+
 const mongoose = require('mongoose');
 
 const auth = require('./routes/auth');
@@ -76,13 +80,17 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
 app.use('/', index);
 app.use('/auth', auth);
-app.use('/api/places', apiFor(require('./models/Place')));
+app.use('/api/places', places);
+// app.use('/api/places', apiFor(require('./models/Place')));
 app.use('/api/review', apiFor(require('./models/Review')));
 app.use('/api/user', apiFor(require('./models/User')));
 app.use('/api/favourite', apiFor(require('./models/Favourite')));
-// app.use('/users', users);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

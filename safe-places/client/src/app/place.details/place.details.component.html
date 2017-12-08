@@ -1,3 +1,20 @@
-<p>
-  place.details works!
-</p>
+<h1> Place details </h1>
+<a [routerLink]="['/places']"> Back </a>
+
+<div *ngIf="place">
+  <div>
+    <img height="300" [src]="place.photo" />
+  </div>
+  <div>
+    <h2> {{ place.name }}&nbsp;</h2>
+    <h3> {{ place.category }} </h3>
+    <h3> {{ place.description }} </h3>
+
+      <div *ngFor="let review of reviews | async" class="review">
+        <p> {{ place.review }} </p>
+
+      </div>
+
+
+  </div>
+</div>

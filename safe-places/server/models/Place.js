@@ -3,6 +3,9 @@ const Schema = mongoose.Schema;
 const CATEGORIES = require('./Place-Cat');
 
 const placeSchema = new Schema({
+
+  reviews: [{ type: Schema.Types.ObjectId, ref: 'Review', required: false }],
+
   name: {
     type: String,
     required: true
@@ -14,6 +17,10 @@ const placeSchema = new Schema({
     type: String,
     enum: CATEGORIES,
     required: false,
+  },
+
+  trustLevel:{
+    type: Number
   },
 
   latitude: Number,

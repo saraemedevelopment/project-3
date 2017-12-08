@@ -43,6 +43,8 @@ const simpleCRUD = (Model) => {
     Model.findById(req.params.id)
       .then(o => res.json(o))
       .catch(e => res.json(e));
+
+      
   });
 
   /* EDIT a Model. */
