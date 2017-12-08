@@ -1,5 +1,5 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 import { routes } from './routes';
@@ -14,7 +14,7 @@ import { AuthService } from '../services/auth.service';
 import { PlacesService } from '../services/places.service';
 import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
 import { ListPlacesComponent } from './list.places/list.places.component';
-
+import { PlaceDetailsComponent } from './place.details/place.details.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import { ListPlacesComponent } from './list.places/list.places.component';
     LoginFormComponent,
     SignupFormComponent,
     HomeComponent,
-    ListPlacesComponent
+    ListPlacesComponent,
+    PlaceDetailsComponent
   ],
   imports: [
     FormsModule,

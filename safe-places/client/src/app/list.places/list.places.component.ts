@@ -6,15 +6,21 @@ import { PlacesService } from '../../services/places.service';
   templateUrl: './list.places.component.html',
   styleUrls: ['./list.places.component.css']
 })
+
 export class ListPlacesComponent implements OnInit {
+
+  places;
 
   constructor(public placeService: PlacesService) { }
 
-  getList() {
-    this.placeService.getList().subscribe();
-  }
+  // getList() {
+  //   this.places= this.placeService.getList().subscribe();
+  //
+  //   }
+
 
   ngOnInit() {
+      this.places= this.placeService.getList()
   }
 
 

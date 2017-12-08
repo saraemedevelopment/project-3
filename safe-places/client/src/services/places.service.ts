@@ -1,16 +1,17 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
+
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-let DOMAIN = "http://localhost:3000";
-let BASE_URL = `${DOMAIN}/api/places`;
+// const DOMAIN = "http://localhost:3000";
+// const BASE_URL = `${DOMAIN}/api/places`;
 
 @Injectable()
 export class PlacesService {
-
+ BASE_URL: string = 'http://localhost:3000/api/places';
       constructor(private http: Http) {}
 
       getList() {
@@ -18,7 +19,7 @@ export class PlacesService {
           .map((res) => res.json());
       }
 
-      get(id) {
+      getPlaceByID(id: number) {
         return this.http.get(`${this.BASE_URL}/${id}`)
           .map((res) => res.json());
       }

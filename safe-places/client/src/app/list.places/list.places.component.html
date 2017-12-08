@@ -2,9 +2,18 @@
   list.places works!
 </p>
 
-  <button (click)="getList()">All</button>
+<div>
+  <div *ngFor="let place of places | async" class="place">
+    <img [src]="place.image" height=100/>
+    <h3> {{ place.name }} </h3>
+    <p> {{ place.description }} </p>
 
-<div class="container">
+    <!-- SIN BARRA BAJA EL ID? -->
+    <a [routerLink]="['/places', place._id]"> View Details  {{place._id}}</a>
+  </div>
+</div>
+
+<!-- <div class="container">
 
 <div class="left">
 
@@ -36,7 +45,7 @@
 
 </div>
 
-<!-- <div class="right">
+<div class="right">
   <div class="place" *ngFor = "let place of places | filter:'name':pattern; let i = index">
   <h2>{{place.name}}</h2>
   <p>Categoría: {{place.category}}</p>
@@ -46,4 +55,4 @@
 </div> -->
 
 
-</div>
+<!-- </div> -->
