@@ -1,0 +1,9 @@
+.agm-map {
+    height: 500px;
+  }
+
+  .map-container{
+    height: 500px;
+    border: solid 1px red;
+
+  }
