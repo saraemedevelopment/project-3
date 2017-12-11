@@ -1,11 +1,9 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
 import { routes } from './routes';
 import { RouterModule } from '@angular/router';
-
-// import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { AgmCoreModule } from '@agm/core';
 
@@ -21,9 +19,6 @@ import { ListPlacesComponent } from './list.places/list.places.component';
 import { PlaceDetailsComponent } from './place.details/place.details.component';
 import { MapsComponent } from './maps/maps.component';
 
-const googleMapsCore = AgmCoreModule.forRoot({
-  apiKey : 'AIzaSyAVoWvBDqi00cVfhe2OESObMg3QJvJE02A',
-});
 
 @NgModule({
   declarations: [
@@ -34,14 +29,15 @@ const googleMapsCore = AgmCoreModule.forRoot({
     ListPlacesComponent,
     PlaceDetailsComponent,
     MapsComponent
-      ],
-
-  schemas:  [ CUSTOM_ELEMENTS_SCHEMA ],
+  ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpModule,
-    RouterModule.forRoot (routes)
+    RouterModule.forRoot(routes),
+    AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyAVoWvBDqi00cVfhe2OESObMg3QJvJE02A',
+    })
   ],
   providers: [AuthService, PlacesService, IsLoggedInService],
   bootstrap: [AppComponent]

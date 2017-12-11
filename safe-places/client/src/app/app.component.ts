@@ -16,7 +16,7 @@ export class AppComponent {
 
   logout(){
     this.auth.logout().subscribe();
-    }
+  }
 
   // loggedin(){
   //     this.auth.isLoggedIn().subscribe();

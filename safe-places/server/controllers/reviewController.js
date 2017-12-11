@@ -24,8 +24,7 @@ module.exports = {
       const obj = new Review(obj_data);
       obj.save()
 
-      // PERO A CUAL PLACE PUSHEO?????//////////////////////
-        .then( o => res.json(o))
+        .then(o => res.json(o))
         .catch(e => res.json(e));
         console.log(this.place.reviews);
     }
