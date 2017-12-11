@@ -17,8 +17,11 @@ export class AuthService {
   private userLoginEvent:EventEmitter<any> = new EventEmitter<any>();
   private options = {withCredentials:true};
 
+  loginEvent:EventEmitter<object> = new EventEmitter();
+  
+
   constructor(private http: Http) {
-    // this.isLoggedIn().subscribe();
+    this.isLoggedIn().subscribe();
   }
 
     public getLoginEventEmitter():EventEmitter<any>{
@@ -38,6 +41,12 @@ export class AuthService {
     private handleError(e) {
       console.log("AUTH ERROR");
       return Observable.throw(e.json().message);
+    }
+
+    handleUser(obj) {
+      this.user = obj;
+      this.loginEvent.emit(this.user);
+      return this.user;
     }
 
     signup(username,password) {
@@ -64,10 +73,10 @@ export class AuthService {
 
     }
 
-    // isLoggedIn() {
-    //   return this.http.get(`${BASEURL}/loggedin`, this.options)
-    //     .map(res => res.json())
-    //     .map(user => this.emitUserLoginEvent(user))
-    //     .catch(this.handleError);
-    // }
+    isLoggedIn() {
+      return this.http.get(`${BASEURL}/loggedin`, this.options)
+        .map(res => res.json())
+        .map(user => this.emitUserLoginEvent(user))
+        .catch(this.handleError);
+    }
 }

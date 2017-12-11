@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
+interface SignupForm{
+  username:string;
+  password:string;
+}
 
 @Component({
   selector: 'app-signup-form',
@@ -8,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./signup.form.component.css']
 })
 export class SignupFormComponent implements OnInit {
-formInfo = {
+formInfo : SignupForm ={
   username:"",
   password:""
 }

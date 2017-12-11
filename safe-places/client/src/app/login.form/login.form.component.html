@@ -1,23 +1,14 @@
-<h1> Authentication Front </h1>
-
 
 <form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
-      <p> Username
-        <input type="text" name="username" [(ngModel)]="username" #myUsername="ngModel"  required minlength="6"/>
-      </p>
-      <div *ngIf="myUsername.errors && (myUsername.dirty || myUsername.touched)">
-    <p class="error" [hidden]="!myUsername.errors.minlength">
-      Username must be at least 6 characters long.
-    </p>
-  </div>
-      <p> Password
+    <h2> Entrar </h2>  
+  <label> Username </label>
+<input type="text" name="username" [(ngModel)]="username" #myUsername="ngModel"  required minlength="6"/>
+ <br>
+ <br>
+     <label> Password </label>
         <input type="password" name="password" [(ngModel)]="password" #myPassword="ngModel" required />
-      </p>
-      <div *ngIf="myPassword.errors && (myPassword.dirty || myPassword.touched)">
-   <p class="error" [hidden]="!myPassword.errors.required">
-     Password is required
-   </p>
- </div>
-
- <button (click)="login()"> login </button>
+    
+        <br>
+        <br>
+ <button (click)="login()" class="btn btn-info"> Entrar </button>
     </form>

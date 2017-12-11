@@ -1,12 +1,24 @@
 
+<form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
 
-<form >
-  <h2> Signup </h2>
+  <h2> Crear usuario </h2>
   <label> Username </label>
-  <input type="text" [(ngModel)]="formInfo.username" name="username"/>
+  <input type="text" name="username" [(ngModel)]="formInfo.username" #myUsername="ngModel" required minlength="6" />
   <br>
+  <div *ngIf="myUsername.errors && (myUsername.dirty || myUsername.touched)">
+      <p class="error" [hidden]="!myUsername.errors.minlength">
+        Username must be at least 6 characters long.
+      </p>
+    </div>
+    <br>
   <label> Password </label>
-  <input type="password" [(ngModel)]="formInfo.password" name="password"/>
-
-  <button (click)="signup()"> signup </button>
+  <input type="password" [(ngModel)]="formInfo.password" name="password" #myPassword="ngModel"/>
+  <div *ngIf="myPassword.errors && (myPassword.dirty || myPassword.touched)">
+      <p class="error" [hidden]="!myPassword.errors.required">
+        Password is required
+      </p>
+    </div>
+    <br>
+    <br>
+  <button (click)="signup()" class="btn btn-info"> Enviar </button>
 </form>

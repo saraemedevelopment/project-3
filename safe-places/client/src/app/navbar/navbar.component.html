@@ -25,12 +25,14 @@
                </ul>
             </li>
         <li><a href="#">Buscador</a></li>
+        <li><a [routerLink]="['/new-place']">Añadir lugar</a></li>
        
       </ul>
         <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="user">{{user.username}}</li>
         <li><a [routerLink]="['/login']">Login</a></li>
         <li class="active"><a href="#">Infórmate <span class="sr-only">(current)</span></a></li>
-        
+         
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
