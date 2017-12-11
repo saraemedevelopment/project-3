@@ -1,0 +1,21 @@
+<h1> New Place </h1>
+
+
+<form #myForm="ngForm">
+      <p> Nombre
+        <input type="text" name="name" [(ngModel)]="name" #placeName="ngModel" />
+      </p>
+
+      <p> Descripción
+        <input type="text" name="description" [(ngModel)]="description" #placeDescription="ngModel" />
+      </p>
+
+      <p> Categoría
+        <input type="text" name="category" [(ngModel)]="category" #placeCat="ngModel" required/>
+      </p>
+
+      <input id="latitude" name="latitude" type="hidden">
+      <input id="longitude" name="longitude" type="hidden">
+   
+ <button (click)="create(myForm.value.name, myForm.value.description, myForm.value.category )"> Enviar </button>
+    </form>

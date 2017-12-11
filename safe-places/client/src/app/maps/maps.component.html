@@ -3,6 +3,11 @@
 <!-- this creates a google map on the page with the given lat/lng from -->
 <!-- the component as the initial center of the map: -->
 <div class="map-container">
+    <div class="container">
+        <h1>Angular 2 + Google Maps Places Autocomplete</h1>
+        <div class="form-group">
+          <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+        </div>
   <agm-map [latitude]="lat" [longitude]="lng">
     <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
   </agm-map>

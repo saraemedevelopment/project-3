@@ -24,6 +24,13 @@ export class PlacesService {
           .map((res) => res.json());
       }
 
+      create(place) {
+        console.log("funcion del servicio");
+        return this.http.post(`${this.BASE_URL}`, place)
+          .map((res) => res.json());
+          
+      }
+
       edit(place) {
         return this.http.put(`${this.BASE_URL}/${place.id}`, place)
           .map((res) => res.json());

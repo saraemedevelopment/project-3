@@ -18,6 +18,7 @@ const simpleCRUD = (Model) => {
   console.log(model_properties);
 
   const router = express.Router();
+  
   /* List all elements from #{model} */
   router.get('/', (req, res, next) => {
     Model.find()

@@ -26,10 +26,10 @@ module.exports = {
 
     placeIdGet:('/:id', checkIDParam, (req, res) => {
       Place.findById(req.params.id)
-    .populate('reviews')
+      .populate("reviews")
         .then(o => res.json(o))
         .catch(e => res.json(e));
-
+       
     }),
 
 
@@ -66,8 +66,8 @@ module.exports = {
         description: req.body.description,
         category: req.body.category,
         // trustLevel: req.body.trustLevel,
-        // latitude: req.body.latitude,
-        // longitude: req.body.longitude,
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
         // pic_path: `/uploads/${req.file.filename}`,
         // pic_name: req.file.originalname
       };

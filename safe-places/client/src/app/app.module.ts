@@ -18,6 +18,7 @@ import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
 import { ListPlacesComponent } from './list.places/list.places.component';
 import { PlaceDetailsComponent } from './place.details/place.details.component';
 import { MapsComponent } from './maps/maps.component';
+import { NewPlaceFormComponent } from './new.place.form/new.place.form.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { MapsComponent } from './maps/maps.component';
     HomeComponent,
     ListPlacesComponent,
     PlaceDetailsComponent,
-    MapsComponent
+    MapsComponent,
+    NewPlaceFormComponent
   ],
   imports: [
     FormsModule,

@@ -9,12 +9,17 @@
     <h2> {{ place.name }}&nbsp;</h2>
     <h3> {{ place.category }} </h3>
     <h3> {{ place.description }} </h3>
+   
+   
+  </div> 
 
-      <div *ngFor="let review of reviews | async" class="review">
-        <p> {{ place.review }} </p>
+  
+   <div *ngFor="let review of place.reviews" class="review">
+        <p> {{ review.text }} </p>
+        <p> {{ review.rating }} </p>
 
-      </div>
+    </div>
 
 
-  </div>
+  
 </div>
