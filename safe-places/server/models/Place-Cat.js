@@ -5,5 +5,6 @@ module.exports = [
   "Centros médicos",
   "Comercios",
   "Centros de ocio",
+  "Mayores",
   "Otros"
 ];

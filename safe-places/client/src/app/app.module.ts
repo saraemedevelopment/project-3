@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule }   from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { routes } from './routes';
 import { RouterModule } from '@angular/router';
 
@@ -19,6 +20,7 @@ import { ListPlacesComponent } from './list.places/list.places.component';
 import { PlaceDetailsComponent } from './place.details/place.details.component';
 import { MapsComponent } from './maps/maps.component';
 import { NewPlaceFormComponent } from './new.place.form/new.place.form.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -30,15 +32,18 @@ import { NewPlaceFormComponent } from './new.place.form/new.place.form.component
     ListPlacesComponent,
     PlaceDetailsComponent,
     MapsComponent,
-    NewPlaceFormComponent
+    NewPlaceFormComponent,
+    NavbarComponent
   ],
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey : 'AIzaSyAVoWvBDqi00cVfhe2OESObMg3QJvJE02A',
+      libraries: ["places"]
     })
   ],
   providers: [AuthService, PlacesService, IsLoggedInService],

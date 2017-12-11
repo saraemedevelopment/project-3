@@ -1,21 +1,43 @@
-<h1> New Place </h1>
-
+<h1> Añadir lugar </h1>
 
 <form #myForm="ngForm">
-      <p> Nombre
-        <input type="text" name="name" [(ngModel)]="name" #placeName="ngModel" />
-      </p>
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="name" #placeName="ngModel" />
+      </div>
+      <div class="form-group">
+          <label for="description">Descripción</label>
+        <input type="text" class="form-control" name="description" [(ngModel)]="description" #placeDescription="ngModel" />
+      </div>
+      <div class="form-group">
+      <label for="name">Categoría</label>
+      <select class="form-control" name="category" [(ngModel)]="category" #placeCat="ngModel" required>
+          <option>Bares y Restaurantes</option>
+          <option>Centros educativos</option>
+          <option>Centros deportivos</option>
+          <option>Centros médicos</option>
+          <option>Comercios</option>
+          <option>Centros de ocio</option>
+          <option>Mayores</option>
+          <option>Otros</option>
+        </select>
+      </div>
+      
 
-      <p> Descripción
-        <input type="text" name="description" [(ngModel)]="description" #placeDescription="ngModel" />
-      </p>
+      <button type="submit" (click)="create(myForm.value.name, myForm.value.description, myForm.value.category )" class="btn btn-default">Enviar</button>
 
-      <p> Categoría
-        <input type="text" name="category" [(ngModel)]="category" #placeCat="ngModel" required/>
-      </p>
-
+        <!-- <input type="text" name="category" [(ngModel)]="category" #placeCat="ngModel" required/> -->
+     
       <input id="latitude" name="latitude" type="hidden">
       <input id="longitude" name="longitude" type="hidden">
    
- <button (click)="create(myForm.value.name, myForm.value.description, myForm.value.category )"> Enviar </button>
+ <!-- <button (click)="create(myForm.value.name, myForm.value.description, myForm.value.category )"> Enviar </button> -->
     </form>
+
+ 
+
+
+
+
+
+    
