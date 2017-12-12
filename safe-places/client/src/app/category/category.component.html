@@ -3,12 +3,11 @@
 </p>
 
 
-<!-- <div>
-  <div *ngFor="let place of places | async" class="place">
+
+  <div *ngFor="let place of places" class="place">
     <img [src]="place.image" height=100/>
     <h3> {{ place.name }} </h3>
     <p> {{ place.description }} </p>
 
-    <a [routerLink]="['/places']"> Ver detalles</a>
+    <a [routerLink]="['/places', place._id]"> View Details</a>
   </div>
-</div> -->

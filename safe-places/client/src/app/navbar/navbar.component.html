@@ -9,17 +9,17 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a [routerLink]="['/']" class="navbar-brand">Home</a>
+      <a [routerLink]="['']" class="navbar-brand">Home</a>
       
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav"[(ngModel)]="selectedCategory" ngDefaultControl>
+      <ul class="nav navbar-nav" ngDefaultControl>
           <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
               <ul class="dropdown-menu" >
-                <li *ngFor="let category of categories" [value]="category"><a [routerLink]="['places/:categoria']">{{category}}</a></li>
+                <li *ngFor="let c of categoria" [value]="categoria"><a [routerLink]="['places-cat', c]">{{c}}</a></li>
                </ul>
             </li>
         <li><a href="#">Buscador</a></li>

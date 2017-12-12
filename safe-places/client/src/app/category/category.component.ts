@@ -11,37 +11,32 @@ import { Router } from '@angular/router';
 export class CategoryComponent implements OnInit {
 
   categoria = [
-    "Bares y restaurantes",
-    "Centros educativos",
-    "Centros deportivos",
-    "Centros médicos",
-    "Comercios",
-    "Centros de ocio",
-    "Mayores",
-    "Otros"
+    "bares-restaurantes",
+    "centros-educativos",
+    "centros-deportivos",
+    "centros-médicos",
+    "comercios",
+    "centros-de-ocio",
+    "mayores",
+    "otros"
   ];
 
-  place: any;
+  places: any;
+  category: string;
   optionalParameter: string;
 
-  constructor(private router: Router, private route: ActivatedRoute, public placeService: PlacesService) { 
-      route.params.subscribe(params => {
-      this.placeService.getPlaceByCat(params['categoria'])
-        .subscribe(place => this.place = place);
-    })
-  
+  constructor(private router: Router, 
+    private route: ActivatedRoute, 
+    public placeService: PlacesService) {
+
   }
 
   ngOnInit() {
-    this.route.params
-    .subscribe((params) => {params['categoria']});
-
-this.route.queryParams
-    .subscribe((queryParams) => {
-      this.optionalParameter = queryParams['foo'];
-  });
-
-    // this.places= this.placeService.getList()
+    this.route.params.subscribe(params => {
+      this.placeService.getPlaceByCat(params['categoria'])
+        .map(places => this.places = places)
+        .subscribe()
+    })
   }
 
 }

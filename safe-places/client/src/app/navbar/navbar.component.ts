@@ -9,7 +9,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  categories = [
+  categoria = [
     "Bares y restaurantes",
     "Centros educativos",
     "Centros deportivos",

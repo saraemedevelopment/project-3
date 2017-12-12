@@ -8,6 +8,7 @@ import { NewPlaceFormComponent } from './new.place.form/new.place.form.component
 import { CategoryComponent } from './category/category.component';
 
 import { AuthService } from '../services/auth.service';
+import { PlacesService } from '../services/places.service';
 import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
 
 
@@ -16,7 +17,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'places', component: ListPlacesComponent },
   { path: 'places/:id', component: PlaceDetailsComponent },
-  { path: 'places/:categoria', component: CategoryComponent },
+  { path: 'places-cat/:categoria', component: CategoryComponent },
   { path: 'signup', component: SignupFormComponent },
   { path: 'new-place', component: NewPlaceFormComponent }
 ];

@@ -32,6 +32,13 @@ module.exports = {
        
     }),
 
+    placeCatGet:('/:categoria', checkIDParam, (req, res) => {
+      Place.find({category: req.params.categoria})
+      .populate("reviews")
+        .then(o => res.json(o))
+        .catch(e => res.json(e)); 
+    }),
+
 
     // placeIdGet: (req, res, next) => {
     //   let contador = 0;

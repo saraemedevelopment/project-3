@@ -26,7 +26,7 @@ export class PlacesService {
 
       // por categorias-----------
       getPlaceByCat(categoria: string) {
-        return this.http.get(`${this.BASE_URL}/${categoria}`)
+        return this.http.get(`${this.BASE_URL}/cat/${categoria}`)
           .map((res) => res.json());
       }
 
