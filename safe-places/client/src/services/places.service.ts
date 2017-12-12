@@ -24,6 +24,12 @@ export class PlacesService {
           .map((res) => res.json());
       }
 
+      // por categorias-----------
+      getPlaceByCat(categoria: string) {
+        return this.http.get(`${this.BASE_URL}/${categoria}`)
+          .map((res) => res.json());
+      }
+
       create(place) {
         console.log("funcion del servicio");
         return this.http.post(`${this.BASE_URL}`, place)

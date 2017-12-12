@@ -15,13 +15,11 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav"[(ngModel)]="selectedCategory" ngDefaultControl>
           <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+              <ul class="dropdown-menu" >
+                <li *ngFor="let category of categories" [value]="category"><a [routerLink]="['places/:categoria']">{{category}}</a></li>
                </ul>
             </li>
         <li><a href="#">Buscador</a></li>
@@ -30,7 +28,11 @@
       </ul>
         <ul class="nav navbar-nav navbar-right">
         <li *ngIf="auth.user">{{auth.user.username}}</li>
-        <li><a [routerLink]="['/login']">Login</a></li>
+
+        <li *ngIf="auth.user" class="active" ><a [routerLink]="['/']" (click)="logout()">Salir</a></li>
+      
+        <li *ngIf="!auth.user"><a [routerLink]="['/login']">Login</a></li>
+        <li *ngIf="!auth.user"><a [routerLink]="['/signup']">Sign up</a></li>
         <li class="active"><a href="#">Infórmate <span class="sr-only">(current)</span></a></li>
          
       </ul>

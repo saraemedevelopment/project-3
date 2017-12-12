@@ -9,12 +9,28 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
+  categories = [
+    "Bares y restaurantes",
+    "Centros educativos",
+    "Centros deportivos",
+    "Centros médicos",
+    "Comercios",
+    "Centros de ocio",
+    "Mayores",
+    "Otros"
+  ];
+  
+  selectedCategory: string;
 
   user:object;
   constructor(private auth:AuthService) {
     this.auth.loginEvent.subscribe( user =>{
       this.user = user;
     })
+  }
+
+  logout() {
+    this.auth.logout().subscribe();
   }
 
   ngOnInit() {

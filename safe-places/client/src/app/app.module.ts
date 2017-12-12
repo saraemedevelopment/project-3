@@ -24,6 +24,7 @@ import { PlaceDetailsComponent } from './place.details/place.details.component';
 import { MapsComponent } from './maps/maps.component';
 import { NewPlaceFormComponent } from './new.place.form/new.place.form.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CategoryComponent } from './category/category.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     PlaceDetailsComponent,
     MapsComponent,
     NewPlaceFormComponent,
-    NavbarComponent
+    NavbarComponent,
+    CategoryComponent
   ],
   imports: [
     FormsModule,
