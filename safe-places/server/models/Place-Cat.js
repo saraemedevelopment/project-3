@@ -2,7 +2,7 @@ module.exports = [
   "bares-restaurantes",
   "centros-educativos",
   "centros-deportivos",
-  "centros-médicos",
+  "centros-medicos",
   "comercios",
   "centros-de-ocio",
   "mayores",

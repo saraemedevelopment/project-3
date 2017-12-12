@@ -17,10 +17,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav" ngDefaultControl>
           <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+              role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
               <ul class="dropdown-menu" >
-                <li *ngFor="let c of categoria" [value]="categoria"><a [routerLink]="['places-cat', c]">{{c}}</a></li>
-               </ul>
+                <li *ngFor="let c of categoria; let i=index" [value]="categoria">
+                  <a [routerLink]="['places-cat', url[i]]">{{c}}</a>
+                </li>
+                  </ul>
             </li>
         <li><a href="#">Buscador</a></li>
         <li><a [routerLink]="['/new-place']">Añadir lugar</a></li>

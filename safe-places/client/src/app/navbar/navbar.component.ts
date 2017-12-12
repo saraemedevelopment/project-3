@@ -19,6 +19,17 @@ export class NavbarComponent implements OnInit {
     "Mayores",
     "Otros"
   ];
+
+  url = [
+    "bares-restaurantes",
+    "centros-educativos",
+    "centros-deportivos",
+    "centros-medicos",
+    "comercios",
+    "centros-de-ocio",
+    "mayores",
+    "otros"
+  ];
   
   selectedCategory: string;
 
