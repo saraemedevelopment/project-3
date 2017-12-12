@@ -1,14 +1,13 @@
-
-<form (ngSubmit)="submitForm(myForm)" #myForm="ngForm">
-    <h2> Entrar </h2>  
+<form>
+  <h2> Entrar </h2>
   <label> Username </label>
-<input type="text" name="username" [(ngModel)]="username" #myUsername="ngModel"  required minlength="6"/>
- <br>
- <br>
-     <label> Password </label>
-        <input type="password" name="password" [(ngModel)]="password" #myPassword="ngModel" required />
-    
-        <br>
-        <br>
- <button (click)="login()" class="btn btn-info"> Entrar </button>
-    </form>
+  <input type="text" name="username" [(ngModel)]="formInfo.username" #myUsername="ngModel" required minlength="6" />
+  <br>
+  <br>
+  <label> Password </label>
+  <input type="password" name="password" [(ngModel)]="formInfo.password" #myPassword="ngModel" required />
+
+  <br>
+  <br>
+  <button (click)="login()" class="btn btn-info"> Entrar </button>
+</form>

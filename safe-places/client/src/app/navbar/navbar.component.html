@@ -29,7 +29,7 @@
        
       </ul>
         <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="user">{{user.username}}</li>
+        <li *ngIf="auth.user">{{auth.user.username}}</li>
         <li><a [routerLink]="['/login']">Login</a></li>
         <li class="active"><a href="#">Infórmate <span class="sr-only">(current)</span></a></li>
          

@@ -6,6 +6,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { routes } from './routes';
 import { RouterModule } from '@angular/router';
 
+// const bootstrapConfig = require('bootstrap-config');
+// bootstrapConfig('./config.json', './variables.less');
+
 import { AgmCoreModule } from '@agm/core';
 
 import { HomeComponent } from './home/home.component';
