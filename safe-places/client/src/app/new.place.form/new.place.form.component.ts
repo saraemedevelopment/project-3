@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlacesService } from '../../services/places.service';
-import { FileSelectDirective, FileUploader } from "ng2-file-upload";
+import { FileUploader } from "ng2-file-upload";
 
 
 
@@ -32,34 +32,53 @@ export class NewPlaceFormComponent implements OnInit {
     "mayores",
     "otros"
   ];
-
+// crear instancia en el servicio, no aqui?
   uploader: FileUploader = new FileUploader({
-    url: `http://localhost:3000/new-place/${this.place._id}`
+    url: `http://localhost:3000/api/places`
   });
 
-  place: any;
+  newPlace = {
+    name: '',
+    category: '',
+    description: '',
+    };
 
+
+  // place: any;
+  // category: any;
   feedback: string;
 
   constructor(public placeService: PlacesService) { }
 
-  create(name, description, category, uploader) {
-    console.log(name, description, category, uploader)
+  // create(name, description, category, uploader) {
+  //   console.log(name, description, category, uploader)
+  //   this.uploader.onBuildItemForm = (item, form) => {
+  //     this.place = this.placeService.create({ name, description, category, uploader }).subscribe();
+  //   };
+
+  //   this.uploader.uploadAll();
+  // }
+
+
+  submit() {
     this.uploader.onBuildItemForm = (item, form) => {
-      this.place = this.placeService.create({ name, description, category, uploader }).subscribe();
+      form.append('name', this.newPlace.name);
+      form.append('category', this.newPlace.category);
+      form.append('description', this.newPlace.description);
     };
 
     this.uploader.uploadAll();
   }
 
-  ngOnInit() {
-    this.uploader.onSuccessItem = (item, response) => {
-      this.feedback = JSON.parse(response).message;
-    };
 
-    this.uploader.onErrorItem = (item, response, status, headers) => {
-      this.feedback = JSON.parse(response).message;
-    };
+  ngOnInit() {
+    // this.uploader.onSuccessItem = (item, response) => {
+    //   this.feedback = JSON.parse(response).message;
+    // };
+
+    // this.uploader.onErrorItem = (item, response, status, headers) => {
+    //   this.feedback = JSON.parse(response).message;
+    // };
   }
 
 }

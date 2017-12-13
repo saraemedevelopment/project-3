@@ -5,13 +5,14 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+import { environment }  from '../environments/environment';
 
-// const DOMAIN = "http://localhost:3000";
-// const BASE_URL = `${DOMAIN}/api/places`;
+const  BASE_DOMAIN:string= environment.baseurl;
 
 @Injectable()
 export class PlacesService {
-  BASE_URL: string = 'http://localhost:3000/api/places';
+  
+  BASE_URL: string = '${BASE_DOMAIN}/api/places';
   private options = {withCredentials:true};
   
   constructor(private http: Http) { }

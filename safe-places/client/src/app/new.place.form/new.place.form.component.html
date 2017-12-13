@@ -24,7 +24,8 @@
       </div>
       <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
 <br>
-      <button type="submit" (click)="create(myForm.value.name, myForm.value.description, myForm.value.category, myForm.uploader)" class="btn btn-default">Enviar</button>
+      <button type="submit" (click)="submit(myForm.value.name, myForm.value.description, 
+      myForm.value.category, myForm.uploader)" class="btn btn-default">Enviar</button>
      
       <input id="latitude" name="latitude" type="hidden">
       <input id="longitude" name="longitude" type="hidden">

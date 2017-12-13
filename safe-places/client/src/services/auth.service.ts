@@ -4,7 +4,9 @@ import {Observable} from 'rxjs/Observable';
 import {Http} from '@angular/http';
 import 'rxjs/Rx';
 
-const BASE_DOMAIN = 'http://localhost:3000';
+import { environment }  from '../environments/environment';
+const  BASE_DOMAIN:string= environment.baseurl;
+
 // import {environment} from '../../environments/environment';
 
 // const BASEURL = environment.BASEURL + "/auth";

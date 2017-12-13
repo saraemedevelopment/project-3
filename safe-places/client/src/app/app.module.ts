@@ -25,7 +25,7 @@ import { MapsComponent } from './maps/maps.component';
 import { NewPlaceFormComponent } from './new.place.form/new.place.form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoryComponent } from './category/category.component';
-import { FileSelectDirective } from "ng2-file-upload";
+import { FileUploadModule } from "ng2-file-upload";
 
 
 @NgModule({
@@ -40,14 +40,14 @@ import { FileSelectDirective } from "ng2-file-upload";
     NewPlaceFormComponent,
     NavbarComponent,
     CategoryComponent,
-    FileSelectDirective
     
   ],
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    BrowserModule,
+    BrowserModule,  
     HttpModule,
+    FileUploadModule,
     RouterModule.forRoot(routes),
     AgmCoreModule.forRoot({
       apiKey : 'AIzaSyAVoWvBDqi00cVfhe2OESObMg3QJvJE02A',
