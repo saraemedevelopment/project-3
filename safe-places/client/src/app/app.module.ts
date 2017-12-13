@@ -25,6 +25,7 @@ import { MapsComponent } from './maps/maps.component';
 import { NewPlaceFormComponent } from './new.place.form/new.place.form.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoryComponent } from './category/category.component';
+import { FileSelectDirective } from "ng2-file-upload";
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { CategoryComponent } from './category/category.component';
     MapsComponent,
     NewPlaceFormComponent,
     NavbarComponent,
-    CategoryComponent
+    CategoryComponent,
+    FileSelectDirective
+    
   ],
   imports: [
     FormsModule,

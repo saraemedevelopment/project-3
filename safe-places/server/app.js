@@ -10,6 +10,7 @@ const places = require('./routes/places');
 const placeController = require('./controllers/placeController');
 const review = require('./routes/review');
 const reviewController = require('./controllers/reviewController');
+const multer = require('multer');
 
 
 const mongoose = require('mongoose');

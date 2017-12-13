@@ -1,6 +1,8 @@
 const express = require('express');
 const Place = require('../models/Place');
 const Review = require('../models/Review');
+const upload = require('../configs/multer');
+
 
 const checkIDParam = (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -24,19 +26,21 @@ module.exports = {
     },
 
 
-    placeIdGet:('/:id', checkIDParam, (req, res) => {
+    placeIdGet: ('/:id', checkIDParam, (req, res) => {
       Place.findById(req.params.id)
-      .populate("reviews")
+        .populate("reviews")
         .then(o => res.json(o))
         .catch(e => res.json(e));
-       
+
     }),
 
-    placeCatGet:('/:categoria', checkIDParam, (req, res) => {
-      Place.find({category: req.params.categoria})
-      .populate("reviews")
+    placeCatGet: ('/:categoria', checkIDParam, (req, res) => {
+      Place.find({
+          category: req.params.categoria
+        })
+        .populate("reviews")
         .then(o => res.json(o))
-        .catch(e => res.json(e)); 
+        .catch(e => res.json(e));
     }),
 
 
@@ -67,21 +71,23 @@ module.exports = {
     //     });
     // },
 
-    placePost: (req, res, next) => {
-      const obj_data = {
-        name: req.body.name,
-        description: req.body.description,
-        category: req.body.category,
-        // trustLevel: req.body.trustLevel,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-        // pic_path: `/uploads/${req.file.filename}`,
-        // pic_name: req.file.originalname
-      };
-      const obj = new Place(obj_data);
-      obj.save()
-        .then(o => res.json(o))
-        .catch(e => res.json(e));
-    }
+    placePost: (upload.single('file'), (req, res, next) => {
+        const obj_data = {
+          name: req.body.name,
+          description: req.body.description,
+          category: req.body.category,
+          // trustLevel: req.body.trustLevel,
+          latitude: req.body.latitude,
+          longitude: req.body.longitude,
+          image: `/uploads/${req.file.filename}`,
+          specs: JSON.parse(req.body.specs) || []
+          // pic_path: `/uploads/${req.file.filename}`,
+          // pic_name: req.file.originalname
+        };
+        const obj = new Place(obj_data);
+        obj.save()
+          .then(o => res.json(o))
+          .catch(e => res.json(e));
+      })
 
-  };
+    };

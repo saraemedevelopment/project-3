@@ -41,7 +41,7 @@ const placeSchema = new Schema({
     required: false
   },
 
-  photo: String,
+  upload: String,
 
 }, {
   timestamps: {
