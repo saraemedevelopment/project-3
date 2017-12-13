@@ -10,24 +10,47 @@ import { FileSelectDirective, FileUploader } from "ng2-file-upload";
   styleUrls: ['./new.place.form.component.css']
 })
 export class NewPlaceFormComponent implements OnInit {
-  uploader:FileUploader = new FileUploader({  
-    url: `http://localhost:3000/api/places/`
+
+  categories = [
+    "Bares y restaurantes",
+    "Centros educativos",
+    "Centros deportivos",
+    "Centros médicos",
+    "Comercios",
+    "Centros de ocio",
+    "Mayores",
+    "Otros"
+  ];
+
+  url = [
+    "bares-restaurantes",
+    "centros-educativos",
+    "centros-deportivos",
+    "centros-medicos",
+    "comercios",
+    "centros-de-ocio",
+    "mayores",
+    "otros"
+  ];
+
+  uploader: FileUploader = new FileUploader({
+    url: `http://localhost:3000/new-place/${this.place._id}`
   });
 
-  place:any;
+  place: any;
 
   feedback: string;
 
   constructor(public placeService: PlacesService) { }
 
   create(name, description, category, uploader) {
+    console.log(name, description, category, uploader)
     this.uploader.onBuildItemForm = (item, form) => {
-    console.log({name, description, category, })
-    this.place= this.placeService.create({name, description, category, uploader}).subscribe();
-  };
-  
-      this.uploader.uploadAll();
-    }
+      this.place = this.placeService.create({ name, description, category, uploader }).subscribe();
+    };
+
+    this.uploader.uploadAll();
+  }
 
   ngOnInit() {
     this.uploader.onSuccessItem = (item, response) => {

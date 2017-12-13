@@ -1,6 +1,6 @@
 <h1> Añadir lugar </h1>
 
-<form #myForm="ngForm">
+<form #myForm="ngForm" >
     <div class="form-group">
         <label for="name">Nombre</label>
         <input type="text" class="form-control" name="name" [(ngModel)]="name" #placeName="ngModel" />
@@ -12,19 +12,19 @@
       <div class="form-group">
       <label for="name">Categoría</label>
       <select class="form-control" name="category" [(ngModel)]="category" #placeCat="ngModel" required>
-          <option>Bares y Restaurantes</option>
-          <option>Centros educativos</option>
+          <option *ngFor="let cat of categories; let i=index" value={{url[i]}}>{{cat}}</option>
+          <!-- <option>Centros educativos</option>
           <option>Centros deportivos</option>
           <option>Centros médicos</option>
           <option>Comercios</option>
           <option>Centros de ocio</option>
           <option>Mayores</option>
-          <option>Otros</option>
+          <option>Otros</option> -->
         </select>
       </div>
       <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
 <br>
-      <button type="submit" (click)="create(myForm.value.name, myForm.value.description, myForm.value.category, myForm.uploader )" class="btn btn-default">Enviar</button>
+      <button type="submit" (click)="create(myForm.value.name, myForm.value.description, myForm.value.category, myForm.uploader)" class="btn btn-default">Enviar</button>
      
       <input id="latitude" name="latitude" type="hidden">
       <input id="longitude" name="longitude" type="hidden">

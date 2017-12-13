@@ -1,7 +1,6 @@
 const express = require('express');
 const Place = require('../models/Place');
 const Review = require('../models/Review');
-const upload = require('../configs/multer');
 
 
 const checkIDParam = (req, res, next) => {
@@ -34,9 +33,9 @@ module.exports = {
 
     }),
 
-    placeCatGet: ('/:categoria', checkIDParam, (req, res) => {
+    placeCatGet: ('/cat/:url', checkIDParam, (req, res) => {
       Place.find({
-          category: req.params.categoria
+          url: req.params.url
         })
         .populate("reviews")
         .then(o => res.json(o))
@@ -71,23 +70,28 @@ module.exports = {
     //     });
     // },
 
-    placePost: (upload.single('file'), (req, res, next) => {
+    placePost: (req, res, next) => {
+      console.log(req.body)
         const obj_data = {
           name: req.body.name,
           description: req.body.description,
-          category: req.body.category,
+          url: req.body.url,
           // trustLevel: req.body.trustLevel,
           latitude: req.body.latitude,
           longitude: req.body.longitude,
-          image: `/uploads/${req.file.filename}`,
-          specs: JSON.parse(req.body.specs) || []
+          upload: `/uploads/${req.file.filename}`,
+          // specs: JSON.parse(req.body.specs) || []
           // pic_path: `/uploads/${req.file.filename}`,
           // pic_name: req.file.originalname
         };
+
+        console.log('ENTRAAAAAA')
         const obj = new Place(obj_data);
+        console.log(obj_data)
+        console.log(obj)
         obj.save()
           .then(o => res.json(o))
           .catch(e => res.json(e));
-      })
+      }
 
     };

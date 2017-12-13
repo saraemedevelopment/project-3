@@ -17,7 +17,7 @@ export const routes: Routes = [
   { path: 'login', component: LoginFormComponent },
   { path: 'places', component: ListPlacesComponent },
   { path: 'places/:id', component: PlaceDetailsComponent },
-  { path: 'places-cat/:categoria', component: CategoryComponent },
+  { path: 'places/cat/:url', component: CategoryComponent },
   { path: 'signup', component: SignupFormComponent },
   { path: 'new-place', component: NewPlaceFormComponent }
 ];

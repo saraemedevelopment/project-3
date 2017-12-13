@@ -1,12 +1,13 @@
 
 const router = require('express').Router();
 const PlaceController = require('../controllers/placeController');
+const upload = require('../configs/multer');
 
+router.post('/', upload.single('file'), PlaceController.placePost);
 router.get('/', PlaceController.placesGet);
 router.get('/:id', PlaceController.placeIdGet);
-router.get('/cat/:categoria', PlaceController.placeCatGet);
+router.get('/cat/:url', PlaceController.placeCatGet);
 
-router.post('/', PlaceController.placePost);
 
 
 module.exports = router;

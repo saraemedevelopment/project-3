@@ -33,7 +33,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.placeService.getPlaceByCat(params['categoria'])
+      this.placeService.getPlaceByCat(params['url'])
         .map(places => this.places = places)
         .subscribe()
     })

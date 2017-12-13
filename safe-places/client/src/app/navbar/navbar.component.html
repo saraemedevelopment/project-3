@@ -21,7 +21,7 @@
               role="button" aria-haspopup="true" aria-expanded="false">Categorías <span class="caret"></span></a>
               <ul class="dropdown-menu" >
                 <li *ngFor="let c of categoria; let i=index" [value]="categoria">
-                  <a [routerLink]="['places-cat', url[i]]">{{c}}</a>
+                  <a [routerLink]="['places/cat', url[i]]">{{c}}</a>
                 </li>
                   </ul>
             </li>

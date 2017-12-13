@@ -13,7 +13,7 @@ const placeSchema = new Schema({
   description: {
     type: String
   },
-  category: {
+  url: {
     type: String,
     enum: CATEGORIES,
     required: false,
