@@ -28,9 +28,9 @@ export class ReviewsService {
   }
 
  
-  create(review) {
-    console.log(review)
-    return this.http.post(`${this.BASE_URL}/${this.place.id}`, review, this.options)
+  create(review, placeId) {
+    console.log(placeId)
+    return this.http.post(`${this.BASE_URL}/${placeId}`, review, this.options)
       .map((res) => res.json());
 
   }

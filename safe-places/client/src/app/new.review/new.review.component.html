@@ -1,22 +1,21 @@
-<form #myForm="ngForm" >
-    <div class="form-group">
-        <label for="name">Comentarios</label>
-        <input type="text" class="form-control" name="text" [(ngModel)]="text" #reviewText="ngModel" />
-      </div>
-        <div class="form-group">
-      <label for="name">Valoración</label>
-      <select class="form-control" name="rating" [(ngModel)]="rating" #reviewRating="ngModel" required>
-          <option value="">Valoración</option>
-          <option>0</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-            </select>
-      </div>
-<br>
-      <button type="submit" (click)="submit(myForm.value.text, myForm.value.rating)" 
-      class="btn btn-default" >Enviar</button>
+<form #myForm="ngForm">
+  <div class="form-group">
+    <label for="name">Comentarios</label>
+    <input type="text" class="form-control" name="text" [(ngModel)]="text" #reviewText="ngModel" />
+  </div>
+  <div class="form-group">
+    <label for="name">Valoración</label>
+    <select class="form-control" name="rating" [(ngModel)]="rating" #reviewRating="ngModel" required>
+      <option value="">Valoración</option>
+      <option>0</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+  <br>
+  <button type="submit" (click)="submit(myForm.value.text, myForm.value.rating)" class="btn btn-default">Enviar</button>
 
-    </form>
+</form>

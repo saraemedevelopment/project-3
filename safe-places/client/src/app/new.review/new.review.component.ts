@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PlacesService } from '../../services/places.service';
 import { ReviewsService } from '../../services/reviews.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,29 +10,32 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./new.review.component.css']
 })
 export class NewReviewComponent implements OnInit {
-  place: any;
+  @Input() place: any;
   review: any;
   text: string;
   rating: number;
 
   constructor(public reviewsService: ReviewsService, public placesService: PlacesService, public router: Router, public route: ActivatedRoute) { }
 
+  // donde esta el place q sale undefined
 
 
   submit(text, rating) {
-    console.log(text, rating, this.place)
+    console.log(text, rating, this.place._id)
 
-    this.review = this.reviewsService.create({ text, rating }).subscribe();
+    this.review = this.reviewsService.create({ text, rating }, this.place._id).subscribe();
 
 
   }
 
   
   ngOnInit() {
-
-    this.reviewsService.findPlaceByID(this.route.params)
-      .subscribe(place => this.place = place);
-
+    // this.route.params.subscribe(params => {
+    //   console.log('AAAAAAAAAAAA ' + params['id'])
+    //   this.reviewsService.findPlaceByID(params['id'])
+    //     .map(place => this.place = place)
+    //     .subscribe()
+    // })
   }
 
 }

@@ -24,18 +24,21 @@ module.exports = {
 
 
   reviewPost: (req, res, next) => {
-    const obj_data = {
-      text: req.body.text,
-      rating: req.body.rating
-    };
-    const obj = new Review(obj_data);
-    obj.save()
-    Place.findByIdAndUpdate(req.params.id, {
-        $push: {
-          "reviews": obj
-        }
+    new Review({
+        text: req.body.text,
+        rating: req.body.rating
       })
-      .then(o => res.json(o))
+      .save()
+      .then(newReview =>{
+        console.log(req.params.id)
+        Place.findByIdAndUpdate(req.params.id, {
+          $push: {
+            "reviews": newReview._id
+          }
+        })
+        .then(o => res.json(o))
+      })
+
       .catch(e => res.json(e))
   }
 }

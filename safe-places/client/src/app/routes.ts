@@ -22,5 +22,5 @@ export const routes: Routes = [
   { path: 'places/cat/:url', component: CategoryComponent },
   { path: 'signup', component: SignupFormComponent },
   { path: 'new-place', component: NewPlaceFormComponent },
-  { path: 'new-review', component: NewReviewComponent }
+  { path: 'new-review/:id', component: NewReviewComponent }
 ];

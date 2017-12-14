@@ -1,8 +1,7 @@
-
-<div class="row">
+<div class="row" *ngIf="place">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <img [src]="place.upload" alt="...">
+      <!-- <img [src]="place.upload" alt="..."> -->
       <div class="caption">
         <h3>{{ place.name }}</h3>
         <p>{{ place.description }}</p>
@@ -11,21 +10,21 @@
         <p>{{ place.trustLevel }}</p>
         <p>
           <!-- <a [routerLink]="['/new-review']" class="btn btn-primary" role="button">Escribir opinión</a> -->
-          <button class="btn btn-primary"(click)="ShowButton()">Escribir opinión</button>
-          
+          <button class="btn btn-primary" (click)="ShowButton()">Escribir opinión</button>
+
         </p>
       </div>
     </div>
   </div>
 
   <div *ngIf="showSelected">
-    <app-new-review></app-new-review>  
+    <app-new-review [place]="place"></app-new-review>
     <br>
-    </div>
+  </div>
 
   <!-- REVIEWS -->
   <div class="sm-6">
-    <div class="container review" *ngFor="let review of place.reviews">
+    <div class="container review" *ngFor="let review of place?.reviews">
       <div class="col-sm-6">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -53,5 +52,3 @@
       <agm-map [latitude]="lat" [longitude]="lng">
         <agm-marker [latitude]=place.latitude [longitude]=place.longitude></agm-marker>
       </agm-map> -->
-
-   
