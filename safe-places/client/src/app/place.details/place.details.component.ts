@@ -17,7 +17,7 @@ review:any;
   constructor( private router: Router, private route: ActivatedRoute, public placeService: PlacesService)  {
     route.params.subscribe(params => {
       this.placeService.getPlaceByID(params['id'])
-        .subscribe(place => this.place = place);
+        .subscribe(place => {this.place = place});
     })
   }
 

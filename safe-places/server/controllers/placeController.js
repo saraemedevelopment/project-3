@@ -28,26 +28,22 @@ module.exports = {
 
 
   placeIdGet: ('/:id', checkIDParam, (req, res) => {
+    let resultado;
     let average = 0;
     let sum = 0;
     let number = 0;
     Place.findById(req.params.id)
       .populate("reviews")
       .then(result1 => {
-        console.log("result1 es " + result1);
         result1.reviews.forEach(e => {
              sum += e.rating;
             number++;
            average = sum / number;
-           console.log(average)
-           console.log(sum)
-           console.log(number)
-            res.place.trustLevel = average;
+           result1.trustLevel = average;
                     })
-          .then(o => res.json(o))
-          .catch(e => res.json(e));
-
+          res.json(result1)
       })
+      .catch(e => res.json(e));
   }),
 
   placeCatGet: ('/cat/:url', checkIDParam, (req, res) => {
