@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PlacesService } from '../../services/places.service';
 
 
 @Component({
@@ -8,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  places: Array<any> = [];
+
+  constructor(public placesService: PlacesService,) { }
 
   ngOnInit() {
+
+    this.placesService.getList()
+    .map(list => this.places = list)
+    .subscribe()
   }
 
 }

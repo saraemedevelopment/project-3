@@ -23,8 +23,8 @@ const placeSchema = new Schema({
     type: Number
   },
 
-  latitude: Number,
-  longitude: Number,
+  lat: Number,
+  lng: Number,
 
   address: {
     type: String,

@@ -1,5 +1,5 @@
 <div class="row" *ngIf="place">
-  <div class="col-sm-6 col-md-4">
+  <div class="col-sm-12 col-md-6 col-lg-6">
     <div class="thumbnail">
       <!-- <img [src]="place.upload" alt="..."> -->
       <div class="caption">
@@ -23,7 +23,7 @@
   </div>
 
   <!-- REVIEWS -->
-  <div class="sm-6">
+  <div class="col-sm-12 col-md-6 col-lg-6">
     <div class="container review" *ngFor="let review of place?.reviews">
       <div class="col-sm-6">
         <div class="panel panel-default">

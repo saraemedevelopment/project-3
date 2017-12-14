@@ -17,9 +17,6 @@ export class NewReviewComponent implements OnInit {
 
   constructor(public reviewsService: ReviewsService, public placesService: PlacesService, public router: Router, public route: ActivatedRoute) { }
 
-  // donde esta el place q sale undefined
-
-
   submit(text, rating) {
     console.log(text, rating, this.place._id)
 
@@ -28,7 +25,6 @@ export class NewReviewComponent implements OnInit {
 
   }
 
-  
   ngOnInit() {
     // this.route.params.subscribe(params => {
     //   console.log('AAAAAAAAAAAA ' + params['id'])
