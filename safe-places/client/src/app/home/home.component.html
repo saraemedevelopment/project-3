@@ -43,10 +43,11 @@
 
 <!-- <app-maps></app-maps> -->
 
+
 <div class="mapa">
     <agm-map [latitude]="40.414628" [longitude]="-3.703525" [zoom]="15">
       <agm-marker *ngFor="let place of places" [latitude]="place.lat" [longitude]="place.lng">
-        <agm-info-window [maxWidth]="100"> content:' [routerLink]="/place.title/', + place._id + '">' + {{place.title}}
+        <agm-info-window [maxWidth]="100"> <a class="text-success" [routerLink]="['/places', place._id]">{{place.name}}</a>
         </agm-info-window>
       </agm-marker>
     </agm-map>

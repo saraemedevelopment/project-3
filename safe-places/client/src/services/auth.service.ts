@@ -5,24 +5,24 @@ import {Http} from '@angular/http';
 import 'rxjs/Rx';
 
 import { environment }  from '../environments/environment';
+
 const  BASE_DOMAIN:string= environment.baseurl;
 
-// import {environment} from '../../environments/environment';
 
-// const BASEURL = environment.BASEURL + "/auth";
-const BASEURL = `${BASE_DOMAIN}/auth`;
+const BASEURL = BASE_DOMAIN + "/auth";
+// const BASEURL = `${BASE_DOMAIN}/auth`;
 
 @Injectable()
 export class AuthService {
 
-  private user:object;
-  private userLoginEvent:EventEmitter<any> = new EventEmitter<any>();
-  private options = {withCredentials:true};
+  public user:object;
+  public userLoginEvent:EventEmitter<any> = new EventEmitter<any>();
+  public options = {withCredentials:true};
 
   loginEvent:EventEmitter<object> = new EventEmitter();
   
 
-  constructor(private http: Http) {
+  constructor(public http: Http) {
     this.isLoggedIn().subscribe();
   }
 
@@ -34,13 +34,13 @@ export class AuthService {
       return this.user;
     }
 
-    private emitUserLoginEvent(user){
+    public emitUserLoginEvent(user){
       this.user = user;
       this.userLoginEvent.emit(user);
       return user;
     }
 
-    private handleError(e) {
+    public handleError(e) {
       console.log("AUTH ERROR");
       return Observable.throw(e.json().message);
     }
