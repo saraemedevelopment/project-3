@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
       <div class="col-md-12">
               <div class="input-group" id="adv-search">
@@ -39,12 +39,12 @@
           </div>
     </div>
  <br>
- <br>
+ <br> -->
 
 <!-- <app-maps></app-maps> -->
 
 
-<div class="mapa">
+<div class="container-fluid">
     <agm-map [latitude]="40.414628" [longitude]="-3.703525" [zoom]="15">
       <agm-marker *ngFor="let place of places" [latitude]="place.lat" [longitude]="place.lng">
         <agm-info-window [maxWidth]="100"> <a class="text-success" [routerLink]="['/places', place._id]">{{place.name}}</a>

@@ -1,10 +1,10 @@
-.mapa{
-    width: 80%;
+/* .mapa{
+    width: 90%;
     margin: 50px auto;
   
-  }
+  } */
   agm-map {
-    height: 800px;
+    height: 500px;
   
   }
 

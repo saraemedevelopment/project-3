@@ -17,7 +17,9 @@ export class PlaceDetailsComponent implements OnInit {
 
   showSelected: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute, public placeService: PlacesService) {
+  constructor(private router: Router, 
+    private route: ActivatedRoute, 
+    public placeService: PlacesService) {
     this.showSelected = false;
   }
 

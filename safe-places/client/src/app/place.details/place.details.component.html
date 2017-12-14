@@ -10,7 +10,7 @@
         <p>{{ place.trustLevel }}</p>
         <p>
           <!-- <a [routerLink]="['/new-review']" class="btn btn-primary" role="button">Escribir opinión</a> -->
-          <button class="btn btn-primary" (click)="ShowButton()">Escribir opinión</button>
+          <button class="btn btn-primary" (click)="showSelected = !showSelected">Escribir opinión</button>
 
         </p>
       </div>

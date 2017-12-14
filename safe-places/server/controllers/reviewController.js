@@ -31,7 +31,7 @@ module.exports = {
       .save()
       .then(newReview =>{
         console.log(req.params.id)
-        Place.findByIdAndUpdate(req.params.id, {
+        Place.findByIdAndUpdate(req.params.id, {new:true},{
           $push: {
             "reviews": newReview._id
           }

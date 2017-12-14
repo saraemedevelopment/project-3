@@ -14,14 +14,31 @@ export class NewReviewComponent implements OnInit {
   review: any;
   text: string;
   rating: number;
-
+  showSelected: boolean;
   constructor(public reviewsService: ReviewsService, public placesService: PlacesService, public router: Router, public route: ActivatedRoute) { }
+  
+  ShowButton() {
+    this.showSelected = true;
+  }
+  HideButton() {
+    this.showSelected = false;
+  }
+
+  getPlaceDetails(id, param) {
+    this.router.navigate(['place', id]);
+    let contador = 0;
+    let sumrating = 0;
+
+  };
 
   submit(text, rating) {
     console.log(text, rating, this.place._id)
-
-    this.review = this.reviewsService.create({ text, rating }, this.place._id).subscribe();
-
+    // this.showSelected = false;
+    this.review = this.reviewsService.create({ text, rating }, this.place._id).subscribe(
+      listReviews => this.review=listReviews
+    );
+  
+    this.HideButton();
 
   }
 

@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <form #myForm="ngForm">
   <div class="form-group">
     <label for="name">Comentarios</label>
@@ -6,7 +7,6 @@
   <div class="form-group">
     <label for="name">Valoración</label>
     <select class="form-control" name="rating" [(ngModel)]="rating" #reviewRating="ngModel" required>
-      <option value="">Valoración</option>
       <option>0</option>
       <option>1</option>
       <option>2</option>
@@ -16,6 +16,9 @@
     </select>
   </div>
   <br>
-  <button type="submit" (click)="submit(myForm.value.text, myForm.value.rating)" class="btn btn-default">Enviar</button>
+  <button type="submit" (click)="submit(myForm.value.text, myForm.value.rating)"  
+  class="btn btn-default" location.reload() >>Enviar</button>
+ 
 
 </form>
+</div>
