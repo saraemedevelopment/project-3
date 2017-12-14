@@ -1,3 +1,5 @@
+// import { log } from 'util';
+
 const express = require('express');
 const Place = require('../models/Place');
 const Review = require('../models/Review');
@@ -18,80 +20,67 @@ const mongoose = require('mongoose');
 module.exports = {
 
 
-    placesGet: (req, res, next) => {
-      Place.find()
-        .then(list => res.json(list))
-        .catch(e => res.json(e));
-    },
+  placesGet: (req, res, next) => {
+    Place.find()
+      .then(list => res.json(list))
+      .catch(e => res.json(e));
+  },
 
 
-    placeIdGet: ('/:id', checkIDParam, (req, res) => {
-      Place.findById(req.params.id)
-        .populate("reviews")
-        .then(o => res.json(o))
-        .catch(e => res.json(e));
-
-    }),
-
-    placeCatGet: ('/cat/:url', checkIDParam, (req, res) => {
-      Place.find({
-          url: req.params.url
-        })
-        .populate("reviews")
-        .then(o => res.json(o))
-        .catch(e => res.json(e));
-    }),
-
-
-    // placeIdGet: (req, res, next) => {
-    //   let contador = 0;
-    //   let sumrating = 0;
-    //   Place.findById(req.params.id)
-    //     .then(result1 => {
-    //       Review.find({
-    //           to: result1._id
-    //         })
-    //         .then(result2 => {
-    //           console.log("RESULT", result2);
-    //           result2.forEach(e => {
-    //             console.log("LONGITUD", result2.length);
-    //             console.log("RATING INDIVIDUAL", e.rating);
-    //
-    //             sumrating += e.rating;
-    //             console.log("SUMA", sumrating);
-    //             contador = sumrating / result2.length;
-    //             console.log("CONTADOR", contador);
-    //             result1.trustLevel = contador;
-    //
-    //           });
-    //         })
-    //         .then(list => res.json(list))
-    //         .catch(e => res.json(e));
-    //     });
-    // },
-
-    placePost: (req, res, next) => {
-      console.log(req.body)
-        const obj_data = {
-          name: req.body.name,
-          description: req.body.description,
-          url: req.body.url,
-          // trustLevel: req.body.trustLevel,
-          latitude: req.body.latitude,
-          longitude: req.body.longitude,
-          upload: `/uploads/${req.file.filename}`,
-          // specs: JSON.parse(req.body.specs) || []
-          // pic_path: `/uploads/${req.file.filename}`,
-          // pic_name: req.file.originalname
-        };
-
-        console.log('ENTRAAAAAA')
-        const obj = new Place(obj_data);
-        console.log(obj_data)
-        console.log(obj)
-        obj.save()
+  placeIdGet: ('/:id', checkIDParam, (req, res) => {
+    let average = 0;
+    let sum = 0;
+    let number = 0;
+    Place.findById(req.params.id)
+      .populate("reviews")
+      .then(result1 => {
+        console.log("result1 es " + result1);
+        result1.reviews.forEach(e => {
+             sum += e.rating;
+            number++;
+           average = sum / number;
+           console.log(average)
+           console.log(sum)
+           console.log(number)
+            res.place.trustLevel = average;
+                    })
           .then(o => res.json(o))
           .catch(e => res.json(e));
-      }
 
+      })
+  }),
+
+  placeCatGet: ('/cat/:url', checkIDParam, (req, res) => {
+    Place.find({
+        url: req.params.url
+      })
+      .populate("reviews")
+      .then(o => res.json(o))
+      .catch(e => res.json(e));
+  }),
+
+  placePost: (req, res, next) => {
+    console.log(req.body)
+    const obj_data = {
+      name: req.body.name,
+      description: req.body.description,
+      url: req.body.url,
+      // trustLevel: req.body.trustLevel,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude,
+      upload: `/uploads/${req.file.filename}`,
+      // specs: JSON.parse(req.body.specs) || []
+      // pic_path: `/uploads/${req.file.filename}`,
+      // pic_name: req.file.originalname
     };
+
+    console.log('ENTRAAAAAA')
+    const obj = new Place(obj_data);
+    console.log(obj_data)
+    console.log(obj)
+    obj.save()
+      .then(o => res.json(o))
+      .catch(e => res.json(e));
+  }
+
+};

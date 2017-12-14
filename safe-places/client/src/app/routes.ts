@@ -6,6 +6,8 @@ import { ListPlacesComponent } from './list.places/list.places.component';
 import { PlaceDetailsComponent } from './place.details/place.details.component';
 import { NewPlaceFormComponent } from './new.place.form/new.place.form.component';
 import { CategoryComponent } from './category/category.component';
+import { NewReviewComponent } from './new.review/new.review.component';
+
 
 import { AuthService } from '../services/auth.service';
 import { PlacesService } from '../services/places.service';
@@ -19,5 +21,6 @@ export const routes: Routes = [
   { path: 'places/:id', component: PlaceDetailsComponent },
   { path: 'places/cat/:url', component: CategoryComponent },
   { path: 'signup', component: SignupFormComponent },
-  { path: 'new-place', component: NewPlaceFormComponent }
+  { path: 'new-place', component: NewPlaceFormComponent },
+  { path: 'new-review', component: NewReviewComponent }
 ];

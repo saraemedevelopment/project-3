@@ -12,7 +12,7 @@ const  BASE_DOMAIN:string= environment.baseurl;
 @Injectable()
 export class PlacesService {
   
-  BASE_URL: string = '${BASE_DOMAIN}/api/places';
+  BASE_URL: string = `${BASE_DOMAIN}/api/places`;
   private options = {withCredentials:true};
   
   constructor(private http: Http) { }

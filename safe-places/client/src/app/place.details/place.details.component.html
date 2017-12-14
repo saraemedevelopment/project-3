@@ -1,29 +1,46 @@
-<h1> Place details </h1>
-<a [routerLink]="['/places']"> Back </a>
-
-<div *ngIf="place">
-  <div>
-    <img height="300" [src]="place.photo" />
+<div class="row">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img [src]="place.upload" alt="...">
+      <div class="caption">
+        <h3>{{ place.name }}</h3>
+        <p>{{ place.description }}</p>
+        <p>{{ place.address }}</p>
+        <p>{{ place.city }}</p>
+        <p>
+          <a [routerLink]="['/new-review']" class="btn btn-primary" role="button">Escribir opinión</a>
+        </p>
+      </div>
+    </div>
   </div>
-  <div>
-    <h2> {{ place.name }}&nbsp;</h2>
-    <h3> {{ place.category }} </h3>
-    <h3> {{ place.description }} </h3>
-   
-   
-  </div> 
 
-  
-   <div *ngFor="let review of place.reviews" class="review">
-        <p> {{ review.text }} </p>
-        <p> {{ review.rating }} </p>
-
+  <!-- REVIEWS -->
+  <div class="col-sm-5">
+    <div class="container review" *ngFor="let review of place.reviews">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong>Valoración: {{ review.rating }}</strong>
+            <span class="text-muted">(commented 5 days ago)</span>
+          </div>
+          <div class="panel-body">
+            {{ review.text }}
+          </div>
+        </div>
+      </div>
     </div>
 
-    <agm-map [latitude]="lat" [longitude]="lng">
-      <agm-marker [latitude]=place.latitude [longitude]=place.longitude></agm-marker>
-    </agm-map>
-
-
-  
+  </div>
 </div>
+
+<!-- REVIEWS -->
+
+<a [routerLink]="['/places']"> Volver </a>
+
+<!-- <div *ngIf="place"> -->
+
+<!-- 
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-marker [latitude]=place.latitude [longitude]=place.longitude></agm-marker>
+      </agm-map> -->
+

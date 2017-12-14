@@ -18,6 +18,7 @@ import { SignupFormComponent } from './signup.form/signup.form.component';
 
 import { AuthService } from '../services/auth.service';
 import { PlacesService } from '../services/places.service';
+import { ReviewsService } from '../services/reviews.service';
 import { IsLoggedInService } from '../services/isLoggedIn.canactivate.service';
 import { ListPlacesComponent } from './list.places/list.places.component';
 import { PlaceDetailsComponent } from './place.details/place.details.component';
@@ -26,6 +27,7 @@ import { NewPlaceFormComponent } from './new.place.form/new.place.form.component
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoryComponent } from './category/category.component';
 import { FileUploadModule } from "ng2-file-upload";
+import { NewReviewComponent } from './new.review/new.review.component';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { FileUploadModule } from "ng2-file-upload";
     NewPlaceFormComponent,
     NavbarComponent,
     CategoryComponent,
+    NewReviewComponent,
     
   ],
   imports: [
@@ -54,7 +57,7 @@ import { FileUploadModule } from "ng2-file-upload";
       libraries: ["places"]
     })
   ],
-  providers: [AuthService, PlacesService, IsLoggedInService],
+  providers: [AuthService, PlacesService, IsLoggedInService, ReviewsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

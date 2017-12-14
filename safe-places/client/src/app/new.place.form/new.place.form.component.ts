@@ -72,13 +72,13 @@ export class NewPlaceFormComponent implements OnInit {
 
 
   ngOnInit() {
-    // this.uploader.onSuccessItem = (item, response) => {
-    //   this.feedback = JSON.parse(response).message;
-    // };
+    this.uploader.onSuccessItem = (item, response) => {
+      this.feedback = JSON.parse(response).message;
+    };
 
-    // this.uploader.onErrorItem = (item, response, status, headers) => {
-    //   this.feedback = JSON.parse(response).message;
-    // };
+    this.uploader.onErrorItem = (item, response, status, headers) => {
+      this.feedback = JSON.parse(response).message;
+    };
   }
 
 }
