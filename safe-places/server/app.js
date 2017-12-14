@@ -88,12 +88,18 @@ app.use('/api/review', review);
 app.use('/api/user', apiFor(require('./models/User')));
 app.use('/api/favourite', apiFor(require('./models/Favourite')));
 
+app.all('/*', function (req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
