@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-new.review',
+  selector: 'app-new-review',
   templateUrl: './new.review.component.html',
   styleUrls: ['./new.review.component.css']
 })
@@ -15,7 +15,7 @@ export class NewReviewComponent implements OnInit {
   text: string;
   rating: number;
 
-  constructor(public reviewsService: ReviewsService, public router: Router, public route: ActivatedRoute) { }
+  constructor(public reviewsService: ReviewsService, public placesService: PlacesService, public router: Router, public route: ActivatedRoute) { }
 
 
 
@@ -27,6 +27,7 @@ export class NewReviewComponent implements OnInit {
 
   }
 
+  
   ngOnInit() {
 
     this.reviewsService.findPlaceByID(this.route.params)

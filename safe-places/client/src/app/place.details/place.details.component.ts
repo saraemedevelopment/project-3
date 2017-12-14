@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlacesService } from '../../services/places.service';
+import { NewReviewComponent } from '../new.review/new.review.component';
 
 @Component({
   selector: 'app-place-details',
@@ -21,12 +22,25 @@ review:any;
     })
   }
 
+  // showSelected : boolean;
+  // constructor(){
+  //     this.showSelected = false;     
+  // }
+  // ShowButton(){
+  //     this.showSelected = true;
+  // }
+  // HideButton(){
+  //     this.showSelected = false;
+  // }
+
   getPlaceDetails(id, param) {
     this.router.navigate(['place', id], { queryParams: { foo: param }});
     let contador = 0;
     let sumrating = 0;
 
      };
+
+  
 
 ngOnInit() {
   this.route.params
@@ -38,7 +52,8 @@ ngOnInit() {
        .subscribe((queryParams) => {
          this.optionalParameter = queryParams['foo'];
      });
-
+     
+  
 
 }
 

@@ -39,7 +39,7 @@ module.exports = {
              sum += e.rating;
             number++;
            average = sum / number;
-           result1.trustLevel = average;
+           result1.trustLevel = Math.round(average*10)/10;
                     })
           res.json(result1)
       })
@@ -64,7 +64,6 @@ module.exports = {
       // trustLevel: req.body.trustLevel,
       latitude: req.body.latitude,
       longitude: req.body.longitude,
-      upload: `/uploads/${req.file.filename}`,
       // specs: JSON.parse(req.body.specs) || []
       // pic_path: `/uploads/${req.file.filename}`,
       // pic_name: req.file.originalname

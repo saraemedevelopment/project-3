@@ -30,7 +30,7 @@ export class ReviewsService {
  
   create(review) {
     console.log(review)
-    return this.http.post(`${this.BASE_URL}`, review, this.options)
+    return this.http.post(`${this.BASE_URL}/${this.place.id}`, review, this.options)
       .map((res) => res.json());
 
   }

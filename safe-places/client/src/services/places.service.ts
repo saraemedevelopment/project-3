@@ -38,6 +38,7 @@ export class PlacesService {
     return this.http.post(`${this.BASE_URL}`, place, this.options)
       .map((res) => res.json());
 
+      
   }
 
   edit(place) {

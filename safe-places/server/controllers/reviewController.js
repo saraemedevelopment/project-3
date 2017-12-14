@@ -16,24 +16,55 @@ const mongoose = require('mongoose');
 
 module.exports = {
 
- /* List all elements from #{model} */
- reviewGet: (req, res, next) => {
-  Review.find()
-    .then(list => res.json(list))
-    .catch(e => res.json(e));
-},
+  reviewGet: (req, res, next) => {
+    Review.find()
+      .then(list => res.json(list))
+      .catch(e => res.json(e));
+  },
 
 
-    reviewPost: (req, res, next) => {
-      const obj_data = {
-        text: req.body.text,
-        rating: req.body.rating
-      };
-      const obj = new Review(obj_data);
-      obj.save()
-      Place.findByIdAndUpdate(req.params.id, { $push: { "reviews": obj } })
-        .then(o => res.json(o))
-        .catch(e => res.json(e))
-      }
+  reviewPost: (req, res, next) => {
+    const obj_data = {
+      text: req.body.text,
+      rating: req.body.rating
+    };
+    const obj = new Review(obj_data);
+    obj.save()
+    Place.findByIdAndUpdate(req.params.id, {
+        $push: {
+          "reviews": obj
+        }
+      })
+      .then(o => res.json(o))
+      .catch(e => res.json(e))
+  }
 }
 
+// example
+
+// ratingController.post('/new/:id/:meetingId', (req, res, next) => {
+//   console.log('entro 1');
+//   console.log(req.params.meeting);
+//   const newRating = new Rating ({
+//     author: req.body.userId,
+//     genericLevel: parseInt(req.body.ratingObj.genericLevel),
+//     punctualityLevel: parseInt(req.body.ratingObj.punctualityLevel),
+//     skillsLevel: parseInt(req.body.ratingObj.skillsLevel),
+//     comment: req.body.ratingObj.comment
+//   });
+//   newRating.save()
+//   .then(rating => {
+//     console.log('entro 2');
+//     User.findByIdAndUpdate({"_id": req.params.id}, {$push: {rating: parseInt(req.body.ratingObj.genericLevel)}}, {new: true})
+//       .then(() => {
+//         Meeting.findByIdAndRemove({"_id": req.params.meetingId})
+//           .then(meeting => {
+//             console.log('entro 3');
+//             res.status(200).json(meeting);
+//           });
+//       });
+
+//   })
+
+//   .catch(err => res.status(500).json({ message : 'Something went wrong'}));
+// });

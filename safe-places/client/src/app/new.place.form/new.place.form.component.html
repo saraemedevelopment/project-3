@@ -11,8 +11,8 @@
       </div>
       <div class="form-group">
       <label for="name">Categoría</label>
-      <select class="form-control" name="category" [(ngModel)]="category" #placeCat="ngModel" required>
-          <option *ngFor="let cat of categories; let i=index" value={{url[i]}}>{{cat}}</option>
+      <select class="form-control" name="url" [(ngModel)]="url" #placeCat="ngModel" required>
+          <option *ngFor="let cat of categories; let i=index" value={{urls[i]}}>{{cat}}</option>
           <!-- <option>Centros educativos</option>
           <option>Centros deportivos</option>
           <option>Centros médicos</option>
@@ -22,13 +22,13 @@
           <option>Otros</option> -->
         </select>
       </div>
-      <input type="file" name="file" ng2FileSelect [uploader]="uploader" />
+      <!-- <input type="file" name="file" ng2FileSelect [uploader]="uploader" /> -->
 <br>
-      <button type="submit" (click)="submit(myForm.value.name, myForm.value.description, 
-      myForm.value.category, myForm.uploader)" class="btn btn-default">Enviar</button>
+      <button type="submit" (click)="create(myForm.value.name, myForm.value.description, 
+      myForm.value.url)" class="btn btn-default">Enviar</button>
      
-      <input id="latitude" name="latitude" type="hidden">
-      <input id="longitude" name="longitude" type="hidden">
+      <!-- <input id="latitude" name="latitude" type="hidden">
+      <input id="longitude" name="longitude" type="hidden"> -->
    
     </form>
 
